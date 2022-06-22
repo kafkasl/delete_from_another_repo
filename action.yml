@@ -1,0 +1,42 @@
+name: 'Remove a path from another repository'
+description: 'Used for removing files and folders from another repository'
+inputs:
+  path:
+    description: 'Path to remove from the other repository'
+    required: true
+  destination_repo:
+    description: 'Destination repository'
+    required: true
+  user_email:
+    description: 'Email for the git commit'
+    required: true
+  user_name:
+    description: 'GitHub username for the commit'
+    required: true
+  destination_branch:
+    description: 'branch to remove file from, defaults to master'
+    required: false
+  destination_branch_create:
+    description: 'Destination branch to create for this commit'
+    required: false
+  commit_message:
+    description: 'A custom message for the commit'
+    required: false
+  git_server:
+    description: 'Git server host, default github.com'
+    required: false
+    default: github.com
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.path}}
+    - ${{ inputs.destination-repo }}
+    - ${{ inputs.user-email }}
+    - ${{ inputs.destination-branch }}
+    - ${{ inputs.destination-branch-create }}
+    - ${{ inputs.commit-message }}
+    - ${{ inputs.git-server }}
+branding:
+  icon: 'git-commit'
+  color: 'green'
