@@ -3,9 +3,9 @@
 set -e
 set -x
 
-if [ -z "$PATH_TO_REMOVE" ]
+if [ -z "$INPUT_PATH" ]
 then
-  echo "Source file must be defined"
+  echo "Path to remove must be defined"
   return 1
 fi
 
@@ -29,7 +29,7 @@ git clone --single-branch --branch $INPUT_DESTINATION_BRANCH "https://x-access-t
 
 echo "Removing contents from git repo"
 cd "$CLONE_DIR"
-git rm -r "$PATH_TO_REMOVE"
+git rm -r "$INPUT_PATH"
 
 if [ ! -z "$INPUT_DESTINATION_BRANCH_CREATE" ]
 then

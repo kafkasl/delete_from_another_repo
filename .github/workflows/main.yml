@@ -1,20 +1,20 @@
-name: Push File
+name: Delete path
 
 on: [pull_request]
-
-env:
-    sha: $GITHUB_SHA
 
 jobs:
   remove-path:
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
     - name: Remove file from repo
       uses: ./
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source_file: 'test03.md'
+        path: 'test-file.md'
         destination_repo: 'kafkasl/delete_from_another_repo'
         user_email: 'pol.avms@gmail.com'
         user_name: 'kafkasl'
